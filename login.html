@@ -1,0 +1,288 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="css/Ecommerce_shopper.css" rel="stylesheet">
+<link href="css/login.css" rel="stylesheet">
+<script src="js/jquery-1.12.4.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/util.min.js"></script>
+<script src="js/modal.min.js"></script>
+<script>
+$(document).ready(function()
+{
+   $("a[href*='#headerLayoutGrid']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_headerLayoutGrid').offset().top }, 600, 'easeOutCirc');
+   });
+   $("a[href*='#navigationLayoutGrid']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_navigationLayoutGrid').offset().top }, 600, 'easeOutCirc');
+   });
+   $("a[href*='#LayoutGridCarousel']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_LayoutGridCarousel').offset().top }, 600, 'easeOutCubic');
+   });
+   $("a[href*='#rolloverLayoutGrid']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_rolloverLayoutGrid').offset().top }, 600, 'easeOutSine');
+   });
+   $('#product1Dialog').on('show.bs.modal', function (e) 
+   {
+      $('#product1Dialog .modal-dialog').removeClass('animate-hide');
+      $('#product1Dialog .modal-dialog').addClass('animate-show');
+   });
+   $('#product1Dialog').on('hide.bs.modal', function (e)
+   {
+      $('#product1Dialog .modal-dialog').removeClass('animate-show');
+      var element = document.getElementById('product1Dialog');
+      var forceReflow = element.offsetWidth;
+      $('#product1Dialog .modal-dialog').addClass('animate-hide');
+   });
+   $('#product1Dialog .modal-dialog').draggable({handle: '.modal-header'});
+   $("#wb_quantity button").on('click', function()
+   {
+      var $input = $('#quantity');
+      var oldVal = $input.val().trim();
+      var newVal = 0;
+      if ($(this).attr('data-dir') == 'up')
+      {
+         if (oldVal < 10)
+         {
+            newVal = parseFloat(oldVal) + 1;
+         }
+         else
+         {
+            newVal = 10;
+         }
+      }
+      else
+      {
+         if (oldVal > 1)
+         {
+            newVal = parseFloat(oldVal) - 1;
+         }
+         else
+         {
+            newVal = 1;
+         }
+      }
+      $input.val(newVal);
+      $input.trigger('change');
+   });
+   $("#quantity").change(function()
+   {
+      $('#amount').val('$' + (Number($('#quantity').val())*12.99).toFixed(2));
+   });
+   $("#quantity").trigger('change');
+});
+</script>
+</head>
+<body>
+<div id="wb_headerLayoutGrid">
+<div id="headerLayoutGrid">
+<div class="row">
+<div class="col-1">
+<div id="wb_headerBreadcrumb" style="display:inline-block;width:455px;height:31px;z-index:0;vertical-align:top;">
+<ul id="headerBreadcrumb">
+<li><a href="" title="Business Hours"><i class="fa fa-clock-o">&nbsp;</i>Business Hours: Mon-Sat 8:00am-7:00pm</a></li>
+<li><a href=""><i class="fa fa-phone">&nbsp;</i>Call us now: +254700000000</a></li>
+</ul>
+
+</div>
+</div>
+<div class="col-2">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_navigationLayoutGrid">
+<div id="navigationLayoutGrid">
+<div class="row">
+<div class="col-1">
+<div id="wb_navigationHeading" style="display:inline-block;width:100%;z-index:1;">
+<h1 id="navigationHeading"><a href="./login.php">DRIP SEASON</a></h1>
+</div>
+</div>
+<div class="col-2">
+</div>
+<div class="col-3">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGridCarousel">
+<div id="LayoutGridCarousel">
+<div class="row">
+<div class="col-1">
+</div>
+</div>
+</div>
+</div>
+<div id="upStickyLayer" style="position:fixed;text-align:left;left:auto;right:25px;top:auto;bottom:25px;width:50px;height:50px;z-index:28;">
+<div id="wb_upIcon" style="position:absolute;left:9px;top:8px;width:24px;height:24px;text-align:center;z-index:2;">
+<a href="#headerLayoutGrid"><div id="upIcon"><i class="fa fa-arrow-up"></i></div></a></div>
+</div>
+<div id="wb_rolloverLayoutGrid">
+<div id="rolloverLayoutGrid">
+<div class="row">
+<div class="col-1">
+<div class="col-1-padding">
+</div>
+</div>
+<div class="col-2">
+<div class="col-2-padding">
+<div id="wb_Login1" style="display:inline-block;width:100%;z-index:3;">
+<form name="loginform" method="post" accept-charset="UTF-8" action="<?php echo basename(__FILE__); ?>" id="loginform">
+<input type="hidden" name="form_name" value="loginform">
+<table id="Login1">
+<tr>
+   <td class="header">Log In</td>
+</tr>
+<tr>
+   <td class="label"><label for="username">User Name</label></td>
+</tr>
+<tr>
+   <td class="row"><input class="input" name="username" type="text" id="username" value="<?php echo $username; ?>"></td>
+</tr>
+<tr>
+   <td class="label"><label for="password">Password</label></td>
+</tr>
+<tr>
+   <td class="row"><input class="input" name="password" type="password" id="password" value="<?php echo $password; ?>"></td>
+</tr>
+<tr>
+   <td class="row"><input id="rememberme" type="checkbox" name="rememberme"><label for="rememberme">Remember me</label></td>
+</tr>
+<tr>
+   <td style="text-align:center;vertical-align:bottom"><input class="button" type="submit" name="login" value="Log In" id="login"></td>
+</tr>
+</table>
+</form>
+
+</div>
+</div>
+</div>
+<div class="col-3">
+<div class="col-3-padding">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="wb_latestLayoutGrid2">
+<div id="latestLayoutGrid2">
+<div class="row">
+<div class="col-1">
+</div>
+<div class="col-2">
+</div>
+<div class="col-3">
+</div>
+<div class="col-4">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_latestLayoutGrid3">
+<div id="latestLayoutGrid3">
+<div class="row">
+<div class="col-1">
+</div>
+<div class="col-2">
+</div>
+<div class="col-3">
+</div>
+<div class="col-4">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_links">
+<div id="links-overlay"></div>
+<div id="links">
+<div class="row">
+<div class="col-1">
+<div id="wb_linksText1">
+<span style="color:#FFFFFF;"><strong>SHOPPER</strong></span>
+</div>
+<div id="wb_contactAddress">
+<p>Mount Kenya University<br/>Kiambu, Thika</p>
+<p>Phone: +254700000000</p>
+<p>Email: info.dripseason@gmail.com</p>
+</div>
+<div id="wb_contactIcon1" style="display:inline-block;width:27px;height:27px;text-align:center;z-index:6;">
+<a href="./index.html"><div id="contactIcon1"><i class="fa fa-linkedin-square"></i></div></a>
+</div>
+<div id="wb_contactIcon2" style="display:inline-block;width:27px;height:27px;text-align:center;z-index:7;">
+<a href="./index.html"><div id="contactIcon2"><i class="fa fa-facebook-official"></i></div></a>
+</div>
+<div id="wb_contactIcon3" style="display:inline-block;width:27px;height:27px;text-align:center;z-index:8;">
+<a href="./index.html"><div id="contactIcon3"><i class="fa fa-twitter"></i></div></a>
+</div>
+<div id="wb_contactIcon4" style="display:inline-block;width:27px;height:27px;text-align:center;z-index:9;">
+<a href="./index.html"><div id="contactIcon4"><i class="fa fa-youtube-play"></i></div></a>
+</div>
+</div>
+<div class="col-2">
+<div id="wb_linksText2">
+<span style="color:#FFFFFF;"><strong>COMPANY</strong></span>
+</div>
+<div id="wb_linksMenu2" style="display:inline-block;width:100%;z-index:11;">
+<ul id="linksMenu2" role="menubar" class="nav">
+<li role="menuitem" class="nav-item firstmain"><a class="nav-link" href="" target="_self">What&nbsp;We&nbsp;Do</a>
+</li>
+<li role="menuitem" class="nav-item"><a class="nav-link" href="" target="_self">Services</a>
+</li>
+<li role="menuitem" class="nav-item"><a class="nav-link" href="#" target="_self">Support</a>
+</li>
+<li role="menuitem" class="nav-item"><a class="nav-link" href="#" target="_self">Privacy&nbsp;Policy</a>
+</li>
+</ul>
+
+</div>
+</div>
+<div class="col-3">
+<div id="wb_linksText3">
+<span style="color:#FFFFFF;"><strong>SUPPORT</strong></span>
+</div>
+<div id="wb_linksMenu1" style="display:inline-block;width:100%;z-index:13;">
+<ul id="linksMenu1" role="menubar" class="nav">
+<li role="menuitem" class="nav-item firstmain"><a class="nav-link" href="" target="_self">Help&nbsp;&amp;&nbsp;Contact&nbsp;Us</a>
+</li>
+<li role="menuitem" class="nav-item"><a class="nav-link" href="" target="_self">Returns&nbsp;&amp;&nbsp;Refunds</a>
+</li>
+<li role="menuitem" class="nav-item"><a class="nav-link" href="" target="_self">Online&nbsp;Stores</a>
+</li>
+<li role="menuitem" class="nav-item"><a class="nav-link" href="" target="_self">Terms&nbsp;&amp;&nbsp;Conditions</a>
+</li>
+</ul>
+
+</div>
+</div>
+<div class="col-4">
+</div>
+</div>
+</div>
+</div>
+<div id="wb_footer">
+<div id="footer">
+<div class="col-1">
+<div id="wb_footerText">
+<span style="color:#FFFFFF;">Copyright © 2022 BIT/2020/00000.&nbsp; </span>
+</div>
+</div>
+<div class="col-2">
+</div>
+</div>
+</div>
+
+</body>
+</html>
